@@ -4,16 +4,14 @@
   "description": "Basic layout of chart ediding tabs",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "sass": "node-sass --source-map true src/static/scss/**/*.scss:src/static/css/",
-    "sass:watch": "node-sass --watch --source-map true src/static/scss/**/*.scss src/static/css/"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
     "url": "git+ssh://git@gitlab.com/bigzeta/frontend_project1.git"
   },
   "author": "Ed Henderson",
-  "license": "ISC",
+  "license": "Private",
   "bugs": {
     "url": "https://gitlab.com/bigzeta/frontend_project1/issues"
   },
@@ -23,7 +21,6 @@
     "gulp-connect": "^4.0.0",
     "gulp-inject": "^4.0.0",
     "gulp-sass": "^2.3.1",
-    "node-sass": "^3.7.0",
-    "serve": "^1.4.0"
+    "node-sass": "^3.7.0"
   }
 }
