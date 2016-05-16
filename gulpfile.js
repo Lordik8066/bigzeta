@@ -17,21 +17,45 @@ gulp.task('fa-install-fonts', function() {
 
 gulp.task('sass-build', function() {
     return gulp
-        .src('src/static/scss/**/*.scss')
+        .src(['src/static/scss/**/*.scss', '!src/static/scss/libs/bootstrap/*.scss'])
         .pipe(sass().on('error', sass.logError))
         .pipe(gulp.dest('dist/static/css'))
 });
 
+gulp.task('copy-css', function() {
+    return gulp
+        .src(['src/static/css/**/*'])
+        .pipe(gulp.dest('dist/static/css'));
+});
+
+gulp.task('copy-js', function() {
+    return gulp
+        .src(['src/static/js/**/*'])
+        .pipe(gulp.dest('dist/static/js'));
+});
+
+gulp.task('images', function() {
+    return gulp
+        .src(['assets/img/**/*', 'src/static/img/**/*'])
+        .pipe(gulp.dest('dist/static/img'));
+});
+
+gulp.task('webfonts', function() {
+    return gulp
+        .src(['assets/fonts/*/*.{woff,woff2,eot,ttf}', 'assets/fonts/*.css'])
+        .pipe(gulp.dest('dist/static/css'));
+});
+
 gulp.task('connectDev', function() {
     connect.server({
-        root: ['dist/html', 'dist', 'src'],
+        root: ['dist/html', 'dist'],
         livereload: true,
         port: 3001
     });
 });
 
 gulp.task('compile-templates', function() {
-    gulp.src('src/templates/**/*.html')
+    gulp.src(['src/templates/**/*.html','!src/templates/base.html'])
         .pipe(debug({title:'compile:'}))
         .pipe(data(function(file) {
             var relpath = path.relative(path.join(__dirname, 'src/templates'), file.path);
@@ -52,7 +76,7 @@ gulp.task('html', function() {
         .pipe(connect.reload());
 });
 
-gulp.task('build', ['fa-install-fonts', 'sass-build', 'compile-templates']);
+gulp.task('build', ['fa-install-fonts', 'copy-css', 'copy-js', 'webfonts', 'images', 'sass-build', 'compile-templates']);
 
 gulp.task('watch', ['build'], function() {
     gulp.watch('src/static/scss/**/*.scss', ['sass-build', 'html']);

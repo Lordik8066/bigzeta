@@ -15,6 +15,16 @@ Bootstrap 4 alpha and fontawesome are both built as part of the compile process 
 The build files are generated in /static/css/base.css. This file should not be committed to git,
 but built as needed.
 
+Fonts
+======
+The fonts for this project are already copied to src/static/css. The font file is included as::
+
+    <link href="/static/css/MyFontsWebfongtsKit.css"></link>
+
+Image Assets
+=============
+All of the image assets you will need are all located in src/static/img
+
 HTML Files
 ===========
 HTML files are located in the src/html folder. Additional pages can be added to a new directory with an index.html
