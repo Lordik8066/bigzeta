@@ -25,7 +25,15 @@ This package is configured in gulpfile.js to include both src/html and src as ba
 can load files from the /static/* paths.
 
 Place any additional assets in the /static/* location. Add additional directories for fonts, images, etc. as needed,
-and you will be able to refer to them directly as '/static/img/*' in the html files.
+and you will be able to refer to them directly as `/static/img/*` in the html files.
+
+Templates
+==========
+The build system will use https://mozilla.github.io/nunjucks/ to compile the templates located in `src/templates` into
+generate files in dist/html. The templates can be provided with `context` data using a json file located in the `src/context`
+directory. The .json file must match the path + filename of the template file.
+
+index.html is given context from index.json, and page2/index.html is given context from page2/index.json.
 
 Project Requirements
 ----------------------
@@ -65,5 +73,14 @@ Build files only::
     gulp build
 
 
+Live Reload
+============
+I have included livereload support in this project. Livereload is part of the gulp default task.
+Livereload will reload the project when any of these change::
 
+    templates
+    context data
+    scss files
+
+Some other files won't trigger a reload autoamtically, like images, fonts, etc.
 
