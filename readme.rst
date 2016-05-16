@@ -15,6 +15,17 @@ Bootstrap 4 alpha and fontawesome are both built as part of the compile process 
 The build files are generated in /static/css/base.css. This file should not be committed to git,
 but built as needed.
 
+HTML Files
+===========
+HTML files are located in the src/html folder. Additional pages can be added to a new directory with an index.html
+file, or added to a different file, but the 2nd approach requires you name the file itself.
+
+The https://www.npmjs.com/package/gulp-connect package is used to serve the local files for development.
+This package is configured in gulpfile.js to include both src/html and src as base directories, so that the html
+can load files from the /static/* paths.
+
+Place any additional assets in the /static/* location. Add additional directories for fonts, images, etc. as needed,
+and you will be able to refer to them directly as '/static/img/*' in the html files.
 
 Project Requirements
 ----------------------

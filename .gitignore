@@ -38,3 +38,5 @@ jspm_packages
 src/static/css/base.*
 
 src/static/css/libs/bootstrap/*
+# Ignore the dist folder
+dist
