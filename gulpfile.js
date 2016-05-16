@@ -9,6 +9,12 @@ var fs = require('fs');
 const data = require('gulp-data');
 const nunjucks = require('gulp-nunjucks');
 
+// Shared error handler
+function handleError(err) {
+    console.log(err.toString());
+    this.emit('end');
+}
+
 gulp.task('fa-install-fonts', function() {
     return gulp
         .src('src/static/scss/libs/font-awesome/fonts/*')
@@ -18,7 +24,7 @@ gulp.task('fa-install-fonts', function() {
 gulp.task('sass-build', function() {
     return gulp
         .src(['src/static/scss/**/*.scss', '!src/static/scss/libs/bootstrap/*.scss'])
-        .pipe(sass().on('error', sass.logError))
+        .pipe(sass().on('error', sass.logError)).on('error', handleError)
         .pipe(gulp.dest('dist/static/css'))
 });
 
@@ -65,8 +71,8 @@ gulp.task('compile-templates', function() {
                 return JSON.parse(fs.readFileSync(jsonfile));
             }
             return {};
-        }))
-        .pipe(nunjucks.compile())
+        })).on('error', handleError)
+        .pipe(nunjucks.compile()).on('error', handleError)
         .pipe(gulp.dest('dist/html'));
 });
 
@@ -85,5 +91,5 @@ gulp.task('watch', ['build'], function() {
     gulp.watch('src/**/*.html', ['html']);
 });
 
-gulp.task('default', ['build', 'connectDev', 'watch']);
+gulp.task('default', ['build', 'watch', 'connectDev']);
 
