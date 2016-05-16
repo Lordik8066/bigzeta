@@ -37,7 +37,10 @@ gulp.task('compile-templates', function() {
             var relpath = path.relative(path.join(__dirname, 'src/templates'), file.path);
             var ctxpath = path.dirname(relpath);
             var jsonfile = path.join('src/context', ctxpath, path.basename(file.path, '.html') + '.json');
-            return JSON.parse(fs.readFileSync(jsonfile));
+            if (fs.existsSync(jsonfile)) {
+                return JSON.parse(fs.readFileSync(jsonfile));
+            }
+            return {};
         }))
         .pipe(nunjucks.compile())
         .pipe(gulp.dest('dist/html'));

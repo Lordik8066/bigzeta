@@ -1,13 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Synoptic One</title>
+{% extends "base.html" %}
 
-    <link rel="stylesheet" href="/static/css/base.css">
-    <link rel="stylesheet" href="/static/css/libs/tether/tether.min.css">
-</head>
-<body>
+{% block content %}
     <ul>
         <li><a href="/">Home</a></li>
         <li><a href="/html/page2.html">Page2</a></li>
@@ -16,10 +9,8 @@
     <div class="container">
         <h1>Welcome to Page 2 {{name}}</h1>
         <p>{{content}}</p>
-    </div>
 
-    <script type="text/javascript" src="/static/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/static/js/libs/tether/tether.min.js"></script>
-    <script type="text/javascript" src="/static/js/libs/bootstrap/bootstrap.min.js"></script>
-</body>
-</html>
+        <h3>{{title}}</h3>
+        <p>{{intro}}</p>
+    </div>
+{% endblock %}
