@@ -1,0 +1,9 @@
+{
+	"version": 3,
+	"file": "_all.scss",
+	"sources": [
+		"../addons/_all.scss"
+	],
+	"mappings": "",
+	"names": []
+}

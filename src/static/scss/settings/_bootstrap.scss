@@ -1,0 +1,60 @@
+// #############################################################################
+// GLOBAL IMPORTS
+// using https://github.com/twbs/bootstrap-sass
+// Override Bootstrap variables
+
+// a flag to toggle asset pipeline / compass integration
+// defaults to true if twbs-font-path function is present
+// (no function => twbs-font-path('') parsed as string == right side)
+// in Sass 3.3 this can be improved with: function-exists(twbs-font-path)
+// $bootstrap-sass-asset-helper:
+// (twbs-font-path("") != unquote('twbs-font-path("")'))
+
+$bootstrap-sass-asset-helper: false;
+
+$grid-breakpoints: (
+  // Extra small screen / phone
+  xs: 0,
+  // Small screen / phone
+  sm: 544px,
+  // Medium screen / tablet
+  md: 768px,
+  // Large screen / desktop
+  lg: 992px,
+  // Extra large screen / wide desktop
+  xl: 1200px
+);
+
+$grid-columns:      16;
+@debug $grid-columns;
+
+$grid-gutter-width: 1.875rem;
+
+// #############################################################################
+// Scaffolding
+// Settings for some of the most global styles.
+
+//** Background color for `<body>`.
+$body-bg:               #fff;
+//** Global text color on `<body>`.
+$text-color:            $darkgray;
+
+//** Global textual link color.
+$link-color:            $brand-primary;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      darken($link-color, 15%);
+//** Link hover decoration.
+$link-hover-decoration: underline;
+
+
+// #############################################################################
+// Typography
+// Font, line-height, and color for body text, headings, and more.
+
+// Copy defaults from sass/libs/bootstrap/_variables.css and modify for additional fonts.
+
+$font-family-sans-serif:     "Helvetica Neue", Helvetica, Arial, sans-serif;
+$font-family-serif:          Georgia, "Times New Roman", Times, serif;
+$font-family-monospace:      Menlo, Monaco, Consolas, "Courier New", monospace;
+$font-family-base:           $font-family-sans-serif;
+
