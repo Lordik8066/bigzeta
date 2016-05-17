@@ -17,14 +17,20 @@
   },
   "homepage": "https://gitlab.com/bigzeta/frontend_project1#README",
   "devDependencies": {
+    "browser-sync": "^2.12.8",
+    "express": "^4.13.4",
     "gulp": "^3.9.1",
     "gulp-connect": "^4.0.0",
     "gulp-data": "^1.2.1",
     "gulp-debug": "^2.1.2",
     "gulp-inject": "^4.0.0",
+    "gulp-jshint": "^2.0.1",
+    "gulp-load-plugins": "^1.2.2",
+    "gulp-minify-css": "^1.2.4",
     "gulp-nunjucks": "^2.2.0",
     "gulp-sass": "^2.3.1",
     "gulp-util": "^3.0.7",
+    "minimist": "^1.2.0",
     "node-sass": "^3.7.0"
   }
 }

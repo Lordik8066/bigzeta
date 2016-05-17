@@ -1,18 +1,36 @@
 var gulp = require('gulp');
-var sass = require('gulp-sass');
 var inject = require('gulp-inject');
 var connect = require('gulp-connect');
 var debug = require('gulp-debug');
-var gutil = require('gulp-util');
 var path = require('path');
 var fs = require('fs');
 const data = require('gulp-data');
 const nunjucks = require('gulp-nunjucks');
+var express = require('express');
+var browserSync = require('browser-sync');
+var minimist = require('minimist');
+var plugins = require('gulp-load-plugins')();
+
+// Plugins
+var sass = require('gulp-sass');
+var minifyCss = require('gulp-minify-css');
+
+var server;
+var buildEnv = plugins.util.env.environment || 'development';
+var config = require('./config/'+buildEnv+'.json');
 
 // Shared error handler
 function handleError(err) {
     console.log(err.toString());
     this.emit('end');
+}
+
+// Browsersync reload
+function reload() {
+    if (server) {
+        return browserSync.reload({ stream: true });
+    }
+    return plugins.util.noop();
 }
 
 gulp.task('fa-install-fonts', function() {
@@ -24,8 +42,12 @@ gulp.task('fa-install-fonts', function() {
 gulp.task('sass-build', function() {
     return gulp
         .src(['src/static/scss/**/*.scss', '!src/static/scss/libs/bootstrap/*.scss'])
-        .pipe(sass().on('error', sass.logError)).on('error', handleError)
+        .pipe(sass({
+            sourceComments: config.srcmap ? 'map' : false
+        }).on('error', sass.logError)).on('error', handleError)
+        .pipe(config.minify ? minifyCss() : plugins.util.noop())
         .pipe(gulp.dest('dist/static/css'))
+        .pipe(reload());
 });
 
 gulp.task('copy-css', function() {
@@ -52,14 +74,6 @@ gulp.task('webfonts', function() {
         .pipe(gulp.dest('dist/static/css'));
 });
 
-gulp.task('connectDev', function() {
-    connect.server({
-        root: ['dist/html', 'dist'],
-        livereload: true,
-        port: 3001
-    });
-});
-
 gulp.task('compile-templates', function() {
     gulp.src(['src/templates/**/*.html','!src/templates/base.html'])
         .pipe(debug({title:'compile:'}))
@@ -73,23 +87,32 @@ gulp.task('compile-templates', function() {
             return {};
         })).on('error', handleError)
         .pipe(nunjucks.compile()).on('error', handleError)
-        .pipe(gulp.dest('dist/html'));
+        .pipe(gulp.dest('dist/html'))
+        .pipe(reload());
 });
 
-gulp.task('html', function() {
+gulp.task('server', function() {
+    server = express();
+    server.use(express.static('dist'));
+    server.use(express.static('dist/html'));
+    server.listen(config.server.port, config.server.url)
+    browserSync({ proxy: config.server.url + ':' + config.server.port});
+});
+
+gulp.task('reload', function() {
     return gulp
         .src('./src/**/*.html')
-        .pipe(connect.reload());
+        .pipe(reload());
 });
 
 gulp.task('build', ['fa-install-fonts', 'copy-css', 'copy-js', 'webfonts', 'images', 'sass-build', 'compile-templates']);
 
 gulp.task('watch', ['build'], function() {
-    gulp.watch('src/static/scss/**/*.scss', ['sass-build', 'html']);
-    gulp.watch('src/context/**/*.json', ['compile-templates', 'html']);
-    gulp.watch('src/templates/**/*.html', ['compile-templates', 'html']);
-    gulp.watch('src/**/*.html', ['html']);
+    gulp.watch('src/static/scss/**/*.scss', ['sass-build']);
+    gulp.watch('src/context/**/*.json', ['compile-templates']);
+    gulp.watch('src/templates/**/*.html', ['compile-templates']);
+    gulp.watch('src/**/*.html', ['reload']);
 });
 
-gulp.task('default', ['build', 'watch', 'connectDev']);
+gulp.task('default', ['build', 'watch', 'server']);
 

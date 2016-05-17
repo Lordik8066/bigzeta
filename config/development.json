@@ -1,0 +1,14 @@
+{
+  "strict": false,
+  "breakOnError": false,
+  "server": {
+    "use": [
+      "dist/html",
+      "dist"
+    ],
+    "url" : "0.0.0.0",
+    "port": 3001
+  },
+  "srcmap": false,
+  "minify": false
+}
