@@ -5,6 +5,25 @@ This project should include all that is needed to get started with frontend deve
 The project source files include a base index.html file, as well as a structured scss folder
 where all of the CSS source is located. This folder organziation is described below.
 
+Quick Start
+============
+
+Clone the repo
+CD to the cloned repo directory::
+
+	npm install
+	gulp
+
+
+If npm installs properly, then you will have a working project. The default gulp task will build the project,
+setup a watch, and launch the server. The server will live-reload when changes are detected in the files.
+
+Editting
+~~~~~~~~~
+
+Edit the html files in the src/templates directory. The templates use the nunjucks template langauge: https://mozilla.github.io/nunjucks/
+
+Edit the style sheets in src/static/scss. The base stylesheet is in base.scss, and this includes all other sheets. They are well organized, please follow the organization started.
 
 SCSS Files
 ===========
