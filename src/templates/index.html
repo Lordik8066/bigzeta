@@ -1,15 +1,165 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <ul>
-        <img src="/static/img/logo_synoptic.svg" alt="">
-        <li><a href="/">Home</a></li>
-        <li><a href="/html/page2/">Page2</a></li>
-    </ul>
+    <header class="header">
+        <div class="header__top">
+            <div class="header__left">
+                <a href="/" class="logo"><img src="/static/img/logo_synoptic.svg" alt=""></a>
+                <span class="header__separator"></span>
+                <span class="project-name">Project Name</span>
+            </div>
+            <div class="header__right hidden-sm-down">
+                <div class="btn-group">
+                    <span class="dropdown-toggl" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Jack Fowler
+                        <i class="fa fa-caret-down" aria-hidden="true"></i>
+                    </span>
+                    <div class="dropdown-menu ">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    <div class="container">
-        <h1>Hello, {{name}}</h1>
-        <p>{{content}}</p>
+        <div class="tabs-chart">
+            <ul class="nav nav-tabs header-tab" role="tablist">
+                <li class="nav-item">
+                    <a href="#data-tab" class="nav-link text-uppercase" role="tab" data-toggle="tab">Data</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#charts-tab" class="nav-link active text-uppercase" role="tab" data-toggle="tab">Charts</a>
+                </li>
+            </ul>
+        </div>
+        <button type="button" class="btn btn-blue btn-share text-xs-center text-uppercase">
+            Share
+            <img src="/static/img/icon_share_sm_white.svg" title="" alt="">
+        </button>
+    </header>
+
+
+
+
+    <div class="content-block">
+        <div class="tab-content chart-content">
+            <div role="data-tab" class="tab-pane" id="data-tab">1</div>
+            <div role="charts-tab" class="tab-pane fade in active" id="charts-tab">
+                <div class="chart-options text-xs-center">
+                    <ul class="nav nav-tabs chart-tab " role="tablist">
+                        <li  class="nav-item">
+                            <a href="#type-edit-tab" role="tab" class="nav-link" data-toggle="tab">
+                                <span class="not-active">
+                                    <span class="chart-options__icon">
+                                        <img src="/static/img/icon_chartedit_type.svg" title="" alt="">
+                                    </span>
+                                    <span class="chart-options__text text-uppercase">type</span>
+                                </span>
+                                <span class="when-active">
+                                    <span class="when-active__close pull-left">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="when-active__name text-uppercase">type</span>
+                                    <span class="when-active__save pull-right">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li  class="nav-item">
+                            <a href="#desc-edit-tab" role="tab" class="nav-link" data-toggle="tab">
+                                <span class="not-active">
+                                    <span class="chart-options__icon">
+                                        <img src="/static/img/icon_chartedit_desc.svg" title="" alt="">
+                                    </span>
+                                    <span class="chart-options__text text-uppercase">Desc</span>
+                                </span>
+                                <span class="when-active">
+                                    <span class="when-active__close pull-left">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="when-active__name text-uppercase">Desc</span>
+                                    <span class="when-active__save pull-right">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li  class="nav-item">
+                            <a href="#theme-edit-tab" role="tab" class="nav-link" data-toggle="tab">
+                                <span class="not-active">
+                                    <span class="chart-options__icon">
+                                        <img src="/static/img/icon_chartedit_theme.svg" title="" alt="">
+                                    </span>
+                                    <span class="chart-options__text text-uppercase">Theme</span>
+                                </span>
+                                <span class="when-active">
+                                    <span class="when-active__close pull-left">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="when-active__name text-uppercase">Desc</span>
+                                    <span class="when-active__save pull-right">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+                        <li  class="nav-item">
+                            <a href="#settings-tab" role="tab" class="nav-link" data-toggle="tab">
+                                <span class="not-active">
+                                    <span class="chart-options__icon">
+                                        <img src="/static/img/icon_chartedit_settings.svg" title="" alt="">
+                                    </span>
+                                    <span class="chart-options__text text-uppercase">Settings</span>
+                                </span>
+                                <span class="when-active">
+                                    <span class="when-active__close pull-left">
+                                        <i class="fa fa-times" aria-hidden="true"></i>
+                                    </span>
+                                    <span class="when-active__name text-uppercase">Desc</span>
+                                    <span class="when-active__save pull-right">
+                                        <i class="fa fa-check" aria-hidden="true"></i>
+                                    </span>
+                                </span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="tab-content chart-main">
+            <div role="tabpanel" class="tab-pane tab-type" id="type-edit-tab">
+                <div class="tab-type__content">
+                    Selects the given tab and shows its associated content. Any other tab that was previously
+                    selected becomes unselected and its associated content is hidden. Returns to the caller
+                    before the tab pane has actually been shown (i.e. before the shown.bs.tab event occurs).
+                    Selects the given tab and shows its associated content. Any other tab that was previously
+                    selected becomes unselected and its associated content is hidden. Returns to the caller
+                    before the tab pane has actually been shown (i.e. before the shown.bs.tab event occurs).
+                    Selects the given tab and shows its associated content. Any other tab that was previously
+                    selected becomes unselected and its associated content is hidden. Returns to the caller
+                    before the tab pane has actually been shown (i.e. before the shown.bs.tab event occurs).
+                    Selects the given tab and shows its associated content. Any other tab that was previously
+                    selected becomes unselected and its associated content is hidden. Returns to the caller
+                    before the tab pane has actually been shown (i.e. before the shown.bs.tab event occurs).
+                    Selects the given tab and shows its associated content. Any other tab that was previously
+                    selected becomes unselected and its associated content is hidden. Returns to the caller
+                    before the tab pane has actually been shown (i.e. before the shown.bs.tab event occurs).
+                    Selects the given tab and shows its associated content. Any other tab that was previously
+                    selected becomes unselected and its associated content is hidden. Returns to the caller
+                    before the tab pane has actually been shown (i.e. before the shown.bs.tab event occurs).
+                    Selects the given tab and shows its associated content. Any other tab that was previously
+                    selected becomes unselected and its associated content is hidden. Returns to the caller
+                    before the tab pane has actually been shown (i.e. before the shown.bs.tab event occurs).
+                </div>
+
+            </div>
+            <div role="tabpanel" class="tab-pane " id="desc-edit-tab">3</div>
+            <div role="tabpanel" class="tab-pane " id="theme-edit-tab">4</div>
+            <div role="tabpanel" class="tab-pane " id="settings-tab">5</div>
+        </div>
     </div>
 {% endblock %}
 

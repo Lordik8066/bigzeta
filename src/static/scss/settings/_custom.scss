@@ -5,3 +5,42 @@
 // feel free to create additional files if settings get cluttered
 
 $speed-base:    200ms;
+
+// fonts
+
+@mixin azoBoldItalic {
+  font-family: AzoSans-BoldItalic;
+}
+@mixin azoBold {
+  font-family: AzoSans-Bold;
+}
+@mixin azoBlack {
+  font-family: AzoSans-Black;
+}
+@mixin azoBlackItalic {
+  font-family: AzoSans-BlackItalic;
+}
+@mixin azoItalic {
+  font-family: AzoSans-Italic;
+}
+@mixin azoLight {
+  font-family: AzoSans-Light;
+}
+@mixin azoLightItalic {
+  font-family: AzoSans-LightItalic;
+}
+@mixin azoMedium {
+  font-family: AzoSans-Medium;
+}
+@mixin azoMediumItalic {
+  font-family: AzoSans-MediumItalic;
+}
+@mixin azoRegular {
+  font-family: AzoSans-Regular;
+}
+@mixin azoThinItalic {
+  font-family: AzoSans-ThinItalic;
+}
+@mixin azothin {
+  font-family: AzoSans-Thin;
+}

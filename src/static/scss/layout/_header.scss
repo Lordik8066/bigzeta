@@ -4,3 +4,65 @@
 // all styles related to the global header should be declared within this file
 // apply the "sites/" nesting described within the documentation if the file
 // is getting to large
+.header {
+  border-bottom: 1px solid #e6e6e6;
+  height: 80px;
+  padding: 24px 20px 0;
+  position: relative;
+  &__top {
+    margin: 0 0 19px;
+  }
+  &__separator {
+    background: rgba(0, 0, 0, 0.33);
+    width: 1px;
+    height: 10px;
+    display: inline-block;
+    margin: 0 7px 0;
+    position: relative;
+    top: 4px;
+  }
+  .btn-share {
+    position: absolute;
+    right: 20px;
+    bottom: -19px;
+    z-index: 1;
+  }
+}
+.project-name {
+  font-size: 1.4em;
+  color: rgba(0, 0, 0, 0.33);
+  position: relative;
+  top: 3px;
+}
+.header-tab {
+  border-bottom: 0;
+  li {
+    display: inline-block;
+    margin: 0 16px 0 0;
+
+  }
+  .nav-link {
+    font-size: 1.2em;
+    @include azoBold();
+    color: $black;
+    display: block;
+    position: relative;
+    letter-spacing: 1.5px;
+    padding: 0;
+    border: 0;
+    text-transform: uppercase;
+    &:hover {
+      text-decoration: none;
+    }
+    &.active:after {
+      content: '';
+      display: block;
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: $bzred;
+    }
+  }
+}

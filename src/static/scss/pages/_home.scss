@@ -5,3 +5,114 @@
 // apply the "sites/" nesting described within the documentation if the file is
 // getting to large
 
+.content-block {
+  height: calc(100vh - 80px);
+  position: relative;
+}
+.chart-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.chart-options {
+  background: $black;
+  color: $white;
+  li {
+    display: inline-block;
+    width: 70px;
+  }
+  &__icon {
+    display: block;
+  }
+}
+.chart-tab {
+  max-height: 50px;
+  overflow: hidden;
+  .nav-item {
+    float: none;
+    margin: 0 14px;
+    &.open {
+      background: transparent;
+      border-radius: 0;
+    }
+  }
+  .nav-link {
+    border: 0;
+    padding: 0;
+    letter-spacing: 1.5px;
+    line-height: 1.8em;
+    color: rgba(255, 255, 255, 0.5);
+    &.active,
+    &.active:focus,
+    &.active:hover,
+    &:hover,
+    &:focus {
+      background-color: transparent;
+      border-radius: 0;
+      color: rgba(255, 255, 255, 0.5);
+    }
+    .when-active {
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: $black;
+      height: 39px;
+      display: block;
+      z-index: 2;
+      padding: 0 20px;
+    }
+    &.active {
+      .when-active {
+        opacity: 1;
+        position: absolute;
+        font-size: 1.4em;
+        &__name {
+          line-height: 39px;
+          letter-spacing: 2.1px;
+          color: rgba(255, 255, 255, 0.66);
+        }
+        &__close {
+          margin: 7px 0 0;
+          font-size: 1.5em;
+        }
+        &__save {
+          font-size: 1.6em;
+          margin: 7px 0 0;
+        }
+      }
+    }
+  }
+  &.active {
+    height: 0;
+  }
+}
+.chart-options {
+  &__text {
+    margin: 7px 0 1px;
+    display: inline-block;
+  }
+  &__icon {
+    padding: 5px 0 0;
+    opacity: .5;
+  }
+}
+
+.chart-main {
+  .tab-type {
+    height: 100px;
+    &__content {
+      width: auto;
+      height:100%;
+      overflow-x: scroll;
+      overflow-y: hidden;
+      white-space: nowrap
+    }
+  }
+  .tab-pane {
+
+  }
+}
